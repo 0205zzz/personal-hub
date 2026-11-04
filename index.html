@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- 導覽列 -->
+  <header class="navbar">
+    <a href="index.html" class="logo">My Personal Hub</a>
+
+    <nav>
+      <a href="#projects">作品</a>
+      <a href="#learning">學習歷程</a>
+      <a href="admin.html" id="admin-link">管理員登入</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 首頁介紹 -->
+    <section class="hero">
+      <p class="hero-subtitle">MY PERSONAL SPACE</p>
+      <h1>Welcome to My Hub.</h1>
+      <p>記錄作品、整理想法，持續累積每一次學習。</p>
+      <a href="#projects" class="hero-button">Explore My Works</a>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="projects" class="content-section">
+      <div class="section-heading">
+        <p class="section-label">MY WORK</p>
+        <h2>Projects</h2>
+        <p>整理我的作品、專案與實作成果。</p>
+      </div>
+
+      <div id="project-list" class="card-grid">
+        <p class="empty-message">目前還沒有公開的作品。</p>
+      </div>
+    </section>
+
+    <!-- 學習歷程 -->
+    <section id="learning" class="content-section">
+      <div class="section-heading">
+        <p class="section-label">MY PROGRESS</p>
+        <h2>Learning Journey</h2>
+        <p>記錄學習過程、練習內容與成長進度。</p>
+      </div>
+
+      <div id="learning-list" class="card-grid">
+        <p class="empty-message">目前還沒有公開的學習紀錄。</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="footer">
+    <p>© <span id="current-year"></span> My Personal Hub</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

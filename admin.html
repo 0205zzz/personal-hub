@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理後台 | My Personal Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">My Personal Hub</a>
+
+    <nav>
+      <a href="index.html">返回首頁</a>
+    </nav>
+  </header>
+
+  <main class="admin-container">
+
+    <section class="admin-header">
+      <p class="section-label">ADMIN DASHBOARD</p>
+      <h1>管理後台</h1>
+      <p>登入後管理你的作品與學習紀錄。</p>
+    </section>
+
+    <!-- 管理員登入 -->
+    <section class="admin-panel">
+
+      <h2>管理員登入</h2>
+
+      <p id="login-status" class="admin-notice">
+        請使用管理員 Google 帳號登入。
+      </p>
+
+      <button
+        type="button"
+        id="google-login"
+        class="admin-button"
+      >
+        使用 Google 帳號登入
+      </button>
+
+      <button
+        type="button"
+        id="google-logout"
+        class="admin-button"
+        hidden
+      >
+        登出
+      </button>
+
+    </section>
+
+    <!-- 登入後才顯示 -->
+    <div id="admin-content" hidden>
+
+      <!-- 新增作品 -->
+      <section class="admin-panel">
+
+        <h2>新增作品</h2>
+
+        <form id="project-form">
+
+          <div class="form-group">
+            <label for="project-title">作品名稱</label>
+            <input
+              type="text"
+              id="project-title"
+              placeholder="例如：個人網站"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="project-description">作品介紹</label>
+            <textarea
+              id="project-description"
+              placeholder="簡單介紹這個作品..."
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="project-link">作品連結（選填）</label>
+            <input
+              type="url"
+              id="project-link"
+              placeholder="https://..."
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="project-visibility">公開狀態</label>
+            <select id="project-visibility">
+              <option value="private">私人</option>
+              <option value="public">公開</option>
+            </select>
+          </div>
+
+          <button type="submit" class="admin-button">
+            新增作品
+          </button>
+
+        </form>
+
+      </section>
+
+      <!-- 新增學習紀錄 -->
+      <section class="admin-panel">
+
+        <h2>新增學習紀錄</h2>
+
+        <form id="learning-form">
+
+          <div class="form-group">
+            <label for="learning-title">學習主題</label>
+            <input
+              type="text"
+              id="learning-title"
+              placeholder="例如：SQL 基礎"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="learning-description">學習內容</label>
+            <textarea
+              id="learning-description"
+              placeholder="今天學習了什麼？"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="learning-date">學習日期</label>
+            <input
+              type="date"
+              id="learning-date"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="learning-link">相關連結（選填）</label>
+            <input
+              type="url"
+              id="learning-link"
+              placeholder="https://www.notion.so/..."
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="learning-visibility">公開狀態</label>
+            <select id="learning-visibility">
+              <option value="private">私人</option>
+              <option value="public">公開</option>
+            </select>
+          </div>
+
+          <button type="submit" class="admin-button">
+            新增學習紀錄
+          </button>
+
+        </form>
+
+      </section>
+
+      <!-- 管理資料 -->
+      <section class="admin-panel">
+
+        <h2>我的內容</h2>
+
+        <h3>作品列表</h3>
+        <div id="admin-project-list">
+          <p class="empty-message">目前尚無作品資料。</p>
+        </div>
+
+        <h3>學習紀錄列表</h3>
+        <div id="admin-learning-list">
+          <p class="empty-message">目前尚無學習紀錄。</p>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- 大型編輯視窗 -->
+  <dialog id="edit-dialog" class="edit-dialog">
+
+    <div class="edit-dialog-header">
+      <h2 id="edit-dialog-title">編輯資料</h2>
+
+      <button
+        type="button"
+        id="close-edit"
+        class="close-button"
+        aria-label="關閉"
+      >
+        ✕
+      </button>
+    </div>
+
+    <form id="edit-form">
+
+      <div class="form-group">
+        <label for="edit-title">標題</label>
+        <input
+          type="text"
+          id="edit-title"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="edit-description">內容介紹</label>
+        <textarea
+          id="edit-description"
+          rows="7"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group" id="edit-link-group">
+        <label for="edit-link">相關連結（選填）</label>
+        <input
+          type="url"
+          id="edit-link"
+          placeholder="https://www.notion.so/..."
+        >
+      </div>
+
+      <div class="form-group" id="edit-date-group">
+        <label for="edit-date">學習日期</label>
+        <input
+          type="date"
+          id="edit-date"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="edit-visibility">公開狀態</label>
+        <select id="edit-visibility">
+          <option value="private">私人</option>
+          <option value="public">公開</option>
+        </select>
+      </div>
+
+      <div class="edit-dialog-actions">
+
+        <button
+          type="button"
+          id="cancel-edit"
+          class="admin-button cancel-button"
+        >
+          取消
+        </button>
+
+        <button
+          type="submit"
+          id="save-edit"
+          class="admin-button"
+        >
+          儲存修改
+        </button>
+
+      </div>
+
+    </form>
+
+  </dialog>
+
+  <footer class="footer">
+    <p>© <span id="current-year"></span> My Personal Hub</p>
+  </footer>
+
+  <script type="module" src="js/admin.js"></script>
+
+</body>
+</html>
